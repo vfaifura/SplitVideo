@@ -39,6 +39,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.targetAudienceTextBox = new System.Windows.Forms.ComboBox();
             this.nextStepButton = new System.Windows.Forms.Button();
+            this.attentionRateNumeric = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.attentionRateNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // titleTextBox
@@ -61,7 +64,7 @@
             // 
             this.descriptionTextBox.Location = new System.Drawing.Point(12, 97);
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(357, 144);
+            this.descriptionTextBox.Size = new System.Drawing.Size(357, 105);
             this.descriptionTextBox.TabIndex = 2;
             this.descriptionTextBox.Text = "";
             // 
@@ -77,7 +80,7 @@
             // genreComboBox
             // 
             this.genreComboBox.FormattingEnabled = true;
-            this.genreComboBox.Location = new System.Drawing.Point(12, 271);
+            this.genreComboBox.Location = new System.Drawing.Point(11, 235);
             this.genreComboBox.Name = "genreComboBox";
             this.genreComboBox.Size = new System.Drawing.Size(357, 32);
             this.genreComboBox.TabIndex = 4;
@@ -85,7 +88,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 244);
+            this.label3.Location = new System.Drawing.Point(41, 208);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 24);
             this.label3.TabIndex = 5;
@@ -94,7 +97,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(42, 309);
+            this.label4.Location = new System.Drawing.Point(41, 273);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(144, 24);
             this.label4.TabIndex = 7;
@@ -102,7 +105,7 @@
             // 
             // producerNameTextBox
             // 
-            this.producerNameTextBox.Location = new System.Drawing.Point(12, 336);
+            this.producerNameTextBox.Location = new System.Drawing.Point(11, 300);
             this.producerNameTextBox.Name = "producerNameTextBox";
             this.producerNameTextBox.Size = new System.Drawing.Size(357, 29);
             this.producerNameTextBox.TabIndex = 6;
@@ -110,7 +113,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(42, 371);
+            this.label5.Location = new System.Drawing.Point(41, 335);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(130, 24);
             this.label5.TabIndex = 9;
@@ -119,7 +122,10 @@
             // targetAudienceTextBox
             // 
             this.targetAudienceTextBox.FormattingEnabled = true;
-            this.targetAudienceTextBox.Location = new System.Drawing.Point(12, 401);
+            this.targetAudienceTextBox.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.targetAudienceTextBox.Location = new System.Drawing.Point(11, 365);
             this.targetAudienceTextBox.Name = "targetAudienceTextBox";
             this.targetAudienceTextBox.Size = new System.Drawing.Size(357, 32);
             this.targetAudienceTextBox.TabIndex = 8;
@@ -127,19 +133,37 @@
             // nextStepButton
             // 
             this.nextStepButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.nextStepButton.Location = new System.Drawing.Point(12, 439);
+            this.nextStepButton.Location = new System.Drawing.Point(12, 440);
             this.nextStepButton.Name = "nextStepButton";
             this.nextStepButton.Size = new System.Drawing.Size(358, 38);
             this.nextStepButton.TabIndex = 10;
-            this.nextStepButton.Text = "Next";
+            this.nextStepButton.Text = "Create";
             this.nextStepButton.UseVisualStyleBackColor = true;
-            this.nextStepButton.Click += new System.EventHandler(this.nextStepButton_Click);
+            this.nextStepButton.Click += new System.EventHandler(this.createProjectButton_Click);
+            // 
+            // attentionRateNumeric
+            // 
+            this.attentionRateNumeric.Location = new System.Drawing.Point(209, 402);
+            this.attentionRateNumeric.Name = "attentionRateNumeric";
+            this.attentionRateNumeric.Size = new System.Drawing.Size(120, 29);
+            this.attentionRateNumeric.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(58, 404);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(124, 24);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Attention rate:";
             // 
             // NewProjectInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 483);
+            this.Controls.Add(this.attentionRateNumeric);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.nextStepButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.targetAudienceTextBox);
@@ -155,7 +179,9 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "NewProjectInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "New Project Info";
+            this.Text = "Create New Project Form";
+            this.Load += new System.EventHandler(this.NewProjectInfo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.attentionRateNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,5 +200,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox targetAudienceTextBox;
         private System.Windows.Forms.Button nextStepButton;
+        private System.Windows.Forms.NumericUpDown attentionRateNumeric;
+        private System.Windows.Forms.Label label6;
     }
 }

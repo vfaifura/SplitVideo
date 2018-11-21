@@ -7,8 +7,8 @@ namespace EmotionMarketing.Domain
     public class Genre
     {
         [Key]
-        public int Id { get; set; }
+        [Column("id")] public int Id { get; set; }
 
-        public string Name { get; set; }
+        [Column("name")] public string Name { get; set; }
     }
 }

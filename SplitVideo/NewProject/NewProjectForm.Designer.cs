@@ -29,169 +29,140 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewProjectForm));
-            this.setPathToVideoButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.setPathToTargetVideoButton = new System.Windows.Forms.Button();
             this.clearVideo = new System.Windows.Forms.Button();
-            this.filePath = new System.Windows.Forms.TextBox();
+            this.targetVideoPathTextBox = new System.Windows.Forms.TextBox();
             this.intoFramesButton = new System.Windows.Forms.Button();
-            this.metaDataRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.targetVideo = new AxWMPLib.AxWindowsMediaPlayer();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.videoIntervalGrid = new System.Windows.Forms.DataGridView();
             this.fromColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emotionColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.getPlayerStateButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            this.reactionVideo = new AxWMPLib.AxWindowsMediaPlayer();
+            this.label2 = new System.Windows.Forms.Label();
+            this.reactionVideoPathTextBox = new System.Windows.Forms.TextBox();
+            this.setPathToReactionVideoButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.targetVideo)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.videoIntervalGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reactionVideo)).BeginInit();
             this.SuspendLayout();
             // 
-            // setPathToVideoButton
+            // setPathToTargetVideoButton
             // 
-            this.setPathToVideoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.setPathToVideoButton.Location = new System.Drawing.Point(413, 36);
-            this.setPathToVideoButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.setPathToVideoButton.Name = "setPathToVideoButton";
-            this.setPathToVideoButton.Size = new System.Drawing.Size(44, 31);
-            this.setPathToVideoButton.TabIndex = 1;
-            this.setPathToVideoButton.Text = "...";
-            this.setPathToVideoButton.UseVisualStyleBackColor = true;
-            this.setPathToVideoButton.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(476, 346);
-            this.button2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(138, 39);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Load Video";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.setPathToTargetVideoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.setPathToTargetVideoButton.Location = new System.Drawing.Point(375, 34);
+            this.setPathToTargetVideoButton.Margin = new System.Windows.Forms.Padding(5);
+            this.setPathToTargetVideoButton.Name = "setPathToTargetVideoButton";
+            this.setPathToTargetVideoButton.Size = new System.Drawing.Size(40, 30);
+            this.setPathToTargetVideoButton.TabIndex = 1;
+            this.setPathToTargetVideoButton.Text = "...";
+            this.setPathToTargetVideoButton.UseVisualStyleBackColor = true;
+            this.setPathToTargetVideoButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // clearVideo
             // 
-            this.clearVideo.Location = new System.Drawing.Point(764, 469);
-            this.clearVideo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.clearVideo.Location = new System.Drawing.Point(20, 370);
+            this.clearVideo.Margin = new System.Windows.Forms.Padding(5);
             this.clearVideo.Name = "clearVideo";
-            this.clearVideo.Size = new System.Drawing.Size(138, 39);
+            this.clearVideo.Size = new System.Drawing.Size(125, 37);
             this.clearVideo.TabIndex = 3;
             this.clearVideo.Text = "Clear Video";
             this.clearVideo.UseVisualStyleBackColor = true;
             this.clearVideo.Click += new System.EventHandler(this.button3_Click);
             // 
-            // filePath
+            // targetVideoPathTextBox
             // 
-            this.filePath.Location = new System.Drawing.Point(22, 36);
-            this.filePath.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.filePath.Name = "filePath";
-            this.filePath.Size = new System.Drawing.Size(379, 31);
-            this.filePath.TabIndex = 4;
+            this.targetVideoPathTextBox.Location = new System.Drawing.Point(20, 34);
+            this.targetVideoPathTextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.targetVideoPathTextBox.Name = "targetVideoPathTextBox";
+            this.targetVideoPathTextBox.Size = new System.Drawing.Size(345, 27);
+            this.targetVideoPathTextBox.TabIndex = 4;
             // 
             // intoFramesButton
             // 
-            this.intoFramesButton.Location = new System.Drawing.Point(28, 469);
-            this.intoFramesButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.intoFramesButton.Location = new System.Drawing.Point(456, 338);
+            this.intoFramesButton.Margin = new System.Windows.Forms.Padding(5);
             this.intoFramesButton.Name = "intoFramesButton";
-            this.intoFramesButton.Size = new System.Drawing.Size(435, 39);
+            this.intoFramesButton.Size = new System.Drawing.Size(343, 37);
             this.intoFramesButton.TabIndex = 5;
-            this.intoFramesButton.Text = "Process";
+            this.intoFramesButton.Text = "3. Cut video on pic";
             this.intoFramesButton.UseVisualStyleBackColor = true;
             this.intoFramesButton.Click += new System.EventHandler(this.processButton_Click);
             // 
-            // metaDataRichTextBox
+            // targetVideo
             // 
-            this.metaDataRichTextBox.Location = new System.Drawing.Point(661, 373);
-            this.metaDataRichTextBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.metaDataRichTextBox.Name = "metaDataRichTextBox";
-            this.metaDataRichTextBox.Size = new System.Drawing.Size(241, 86);
-            this.metaDataRichTextBox.TabIndex = 7;
-            this.metaDataRichTextBox.Text = "";
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(476, 19);
-            this.axWindowsMediaPlayer1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(426, 317);
-            this.axWindowsMediaPlayer1.TabIndex = 0;
+            this.targetVideo.Enabled = true;
+            this.targetVideo.Location = new System.Drawing.Point(469, 19);
+            this.targetVideo.Margin = new System.Windows.Forms.Padding(5);
+            this.targetVideo.Name = "targetVideo";
+            this.targetVideo.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("targetVideo.OcxState")));
+            this.targetVideo.Size = new System.Drawing.Size(433, 262);
+            this.targetVideo.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 9);
+            this.label1.Location = new System.Drawing.Point(35, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 22);
+            this.label1.Size = new System.Drawing.Size(196, 21);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Path to video file";
+            this.label1.Text = "Path to target video file";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(22, 89);
+            this.groupBox1.Controls.Add(this.videoIntervalGrid);
+            this.groupBox1.Location = new System.Drawing.Point(20, 127);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(435, 370);
+            this.groupBox1.Size = new System.Drawing.Size(406, 235);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Expected result";
             // 
-            // label2
+            // label3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(145, 22);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Attention rate:";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 21);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Time interval";
             // 
-            // numericUpDown1
+            // videoIntervalGrid
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(168, 36);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 31);
-            this.numericUpDown1.TabIndex = 12;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.videoIntervalGrid.AllowUserToAddRows = false;
+            this.videoIntervalGrid.AllowUserToDeleteRows = false;
+            this.videoIntervalGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.videoIntervalGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.videoIntervalGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fromColumn,
             this.toColumn,
             this.emotionColumn});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 103);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(423, 256);
-            this.dataGridView1.TabIndex = 13;
+            this.videoIntervalGrid.Location = new System.Drawing.Point(10, 59);
+            this.videoIntervalGrid.Name = "videoIntervalGrid";
+            this.videoIntervalGrid.RowHeadersVisible = false;
+            this.videoIntervalGrid.Size = new System.Drawing.Size(385, 162);
+            this.videoIntervalGrid.TabIndex = 13;
             // 
             // fromColumn
             // 
             this.fromColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.fromColumn.HeaderText = "From";
             this.fromColumn.Name = "fromColumn";
-            this.fromColumn.Width = 79;
+            this.fromColumn.Width = 73;
             // 
             // toColumn
             // 
             this.toColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.toColumn.HeaderText = "To";
             this.toColumn.Name = "toColumn";
-            this.toColumn.Width = 55;
+            this.toColumn.Width = 53;
             // 
             // emotionColumn
             // 
@@ -202,59 +173,94 @@
             // 
             // getPlayerStateButton
             // 
-            this.getPlayerStateButton.Location = new System.Drawing.Point(476, 395);
-            this.getPlayerStateButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.getPlayerStateButton.Location = new System.Drawing.Point(456, 291);
+            this.getPlayerStateButton.Margin = new System.Windows.Forms.Padding(5);
             this.getPlayerStateButton.Name = "getPlayerStateButton";
-            this.getPlayerStateButton.Size = new System.Drawing.Size(138, 39);
+            this.getPlayerStateButton.Size = new System.Drawing.Size(343, 37);
             this.getPlayerStateButton.TabIndex = 11;
-            this.getPlayerStateButton.Text = "Get State";
+            this.getPlayerStateButton.Text = "2. Get State";
             this.getPlayerStateButton.UseVisualStyleBackColor = true;
             this.getPlayerStateButton.Click += new System.EventHandler(this.getPlayerStateButton_Click);
             // 
-            // label3
+            // reactionVideo
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 22);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Time interval";
+            this.reactionVideo.Enabled = true;
+            this.reactionVideo.Location = new System.Drawing.Point(494, 19);
+            this.reactionVideo.Margin = new System.Windows.Forms.Padding(5);
+            this.reactionVideo.Name = "reactionVideo";
+            this.reactionVideo.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("reactionVideo.OcxState")));
+            this.reactionVideo.Size = new System.Drawing.Size(193, 166);
+            this.reactionVideo.TabIndex = 12;
+            this.reactionVideo.Visible = false;
             // 
-            // label4
+            // label2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(704, 346);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 22);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Metadata";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(35, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(211, 21);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Path to reaction video file";
+            // 
+            // reactionVideoPathTextBox
+            // 
+            this.reactionVideoPathTextBox.Location = new System.Drawing.Point(20, 89);
+            this.reactionVideoPathTextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.reactionVideoPathTextBox.Name = "reactionVideoPathTextBox";
+            this.reactionVideoPathTextBox.Size = new System.Drawing.Size(345, 27);
+            this.reactionVideoPathTextBox.TabIndex = 16;
+            // 
+            // setPathToReactionVideoButton
+            // 
+            this.setPathToReactionVideoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.setPathToReactionVideoButton.Location = new System.Drawing.Point(375, 89);
+            this.setPathToReactionVideoButton.Margin = new System.Windows.Forms.Padding(5);
+            this.setPathToReactionVideoButton.Name = "setPathToReactionVideoButton";
+            this.setPathToReactionVideoButton.Size = new System.Drawing.Size(40, 30);
+            this.setPathToReactionVideoButton.TabIndex = 15;
+            this.setPathToReactionVideoButton.Text = "...";
+            this.setPathToReactionVideoButton.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(456, 385);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(343, 37);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "4. Send on azure and extract emotion";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.extractEmotionButton);
             // 
             // NewProjectForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 512);
-            this.Controls.Add(this.label4);
+            this.ClientSize = new System.Drawing.Size(913, 446);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.reactionVideoPathTextBox);
+            this.Controls.Add(this.setPathToReactionVideoButton);
             this.Controls.Add(this.getPlayerStateButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.metaDataRichTextBox);
             this.Controls.Add(this.intoFramesButton);
-            this.Controls.Add(this.filePath);
+            this.Controls.Add(this.targetVideoPathTextBox);
             this.Controls.Add(this.clearVideo);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.setPathToVideoButton);
-            this.Controls.Add(this.axWindowsMediaPlayer1);
-            this.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.Controls.Add(this.setPathToTargetVideoButton);
+            this.Controls.Add(this.targetVideo);
+            this.Controls.Add(this.reactionVideo);
+            this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "NewProjectForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Video Setting Form";
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            this.Load += new System.EventHandler(this.NewProjectForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.targetVideo)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.videoIntervalGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reactionVideo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,24 +268,24 @@
 
         #endregion
 
-        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
-        private System.Windows.Forms.Button setPathToVideoButton;
-        private System.Windows.Forms.Button button2;
+        private AxWMPLib.AxWindowsMediaPlayer targetVideo;
+        private System.Windows.Forms.Button setPathToTargetVideoButton;
         private System.Windows.Forms.Button clearVideo;
-        private System.Windows.Forms.TextBox filePath;
+        private System.Windows.Forms.TextBox targetVideoPathTextBox;
         private System.Windows.Forms.Button intoFramesButton;
-        private System.Windows.Forms.RichTextBox metaDataRichTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView videoIntervalGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn fromColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn toColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn emotionColumn;
         private System.Windows.Forms.Button getPlayerStateButton;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private AxWMPLib.AxWindowsMediaPlayer reactionVideo;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox reactionVideoPathTextBox;
+        private System.Windows.Forms.Button setPathToReactionVideoButton;
+        private System.Windows.Forms.Button button1;
     }
 }
 

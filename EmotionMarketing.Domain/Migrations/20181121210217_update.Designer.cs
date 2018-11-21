@@ -8,9 +8,10 @@ using EmotionMarketing.Domain;
 namespace EmotionMarketing.Domain.Migrations
 {
     [DbContext(typeof(emotionDb))]
-    partial class emotionDbModelSnapshot : ModelSnapshot
+    [Migration("20181121210217_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.6");

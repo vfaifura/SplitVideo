@@ -30,9 +30,11 @@
         {
             this.newProjectButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
-            this.historyButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.viewProjectButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,7 +45,7 @@
             this.newProjectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newProjectButton.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.newProjectButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.newProjectButton.Location = new System.Drawing.Point(88, 128);
+            this.newProjectButton.Location = new System.Drawing.Point(88, 90);
             this.newProjectButton.Name = "newProjectButton";
             this.newProjectButton.Size = new System.Drawing.Size(338, 40);
             this.newProjectButton.TabIndex = 0;
@@ -61,16 +63,6 @@
             this.panel1.Size = new System.Drawing.Size(507, 57);
             this.panel1.TabIndex = 1;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(23, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(263, 33);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Emotion Marketing";
-            // 
             // exitButton
             // 
             this.exitButton.FlatAppearance.BorderSize = 0;
@@ -85,27 +77,70 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // historyButton
+            // label1
             // 
-            this.historyButton.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.historyButton.FlatAppearance.BorderSize = 0;
-            this.historyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.historyButton.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.historyButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.historyButton.Location = new System.Drawing.Point(88, 185);
-            this.historyButton.Name = "historyButton";
-            this.historyButton.Size = new System.Drawing.Size(338, 40);
-            this.historyButton.TabIndex = 2;
-            this.historyButton.Text = "View History";
-            this.historyButton.UseVisualStyleBackColor = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(23, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(263, 33);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Emotion Marketing";
+            // 
+            // viewProjectButton
+            // 
+            this.viewProjectButton.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.viewProjectButton.FlatAppearance.BorderSize = 0;
+            this.viewProjectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.viewProjectButton.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.viewProjectButton.ForeColor = System.Drawing.SystemColors.Info;
+            this.viewProjectButton.Location = new System.Drawing.Point(88, 147);
+            this.viewProjectButton.Name = "viewProjectButton";
+            this.viewProjectButton.Size = new System.Drawing.Size(338, 40);
+            this.viewProjectButton.TabIndex = 2;
+            this.viewProjectButton.Text = "View Projects";
+            this.viewProjectButton.UseVisualStyleBackColor = false;
+            this.viewProjectButton.Click += new System.EventHandler(this.viewProjectButton_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.ForeColor = System.Drawing.SystemColors.Info;
+            this.button1.Location = new System.Drawing.Point(88, 211);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(338, 40);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "New Project with video";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.ForeColor = System.Drawing.SystemColors.Info;
+            this.button2.Location = new System.Drawing.Point(88, 267);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(338, 40);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Data from db for first project";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(507, 301);
-            this.Controls.Add(this.historyButton);
+            this.ClientSize = new System.Drawing.Size(507, 344);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.viewProjectButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.newProjectButton);
             this.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -126,6 +161,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Button historyButton;
+        private System.Windows.Forms.Button viewProjectButton;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

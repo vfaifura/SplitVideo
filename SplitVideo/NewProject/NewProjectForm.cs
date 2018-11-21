@@ -3,6 +3,9 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using EmotionMarketing.Logic.DbWorker;
+using EmotionMarketing.Logic.EmotionAPI;
+using EmotionMarketing.Logic.Utils;
 using MediaToolkit;
 using MediaToolkit.Model;
 using MediaToolkit.Options;
@@ -12,11 +15,14 @@ namespace SplitVideo.NewProject
 {
     public partial class NewProjectForm : Form
     {
-        public NewProjectForm()
+        private int projectId;
+
+        public NewProjectForm(int projectId)
         {
             InitializeComponent();
 
             emotionColumn.Items.AddRange("Happy", "Mad", "Anger");
+            this.projectId = projectId;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -25,28 +31,24 @@ namespace SplitVideo.NewProject
 
             if (openFileDialod1.ShowDialog() == DialogResult.OK)
             {
-                filePath.Text = openFileDialod1.FileName;
+                targetVideoPathTextBox.Text = openFileDialod1.FileName;
             }
-        }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            axWindowsMediaPlayer1.URL = filePath.Text;
-            axWindowsMediaPlayer1.Ctlcontrols.play();
-            var inputFile = new MediaFile { Filename = filePath.Text };
+            targetVideo.URL = targetVideoPathTextBox.Text;
+            targetVideo.Ctlcontrols.play();
+            var inputFile = new MediaFile { Filename = targetVideoPathTextBox.Text };
 
             using (var engine = new Engine())
             {
                 engine.GetMetadata(inputFile);
             }
-
-            metaDataRichTextBox.Text = inputFile.Metadata.Duration.TotalSeconds + Environment.NewLine + inputFile.Metadata.VideoData.Fps;  // info about video
         }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            axWindowsMediaPlayer1.Ctlcontrols.stop();
-            filePath.Text = "";
-            dataGridView1.Rows.Clear();
+            targetVideo.Ctlcontrols.stop();
+            targetVideoPathTextBox.Text = "";
+            videoIntervalGrid.Rows.Clear();
         }
 
 
@@ -65,8 +67,7 @@ namespace SplitVideo.NewProject
 
         private void CutVideo()
         {
-            var inputFile = new MediaFile { Filename = filePath.Text };
-
+            var inputFile = new MediaFile { Filename = targetVideoPathTextBox.Text };
 
             using (var engine = new Engine())
             {
@@ -96,23 +97,88 @@ namespace SplitVideo.NewProject
 
         private void getPlayerStateButton_Click(object sender, EventArgs e)
         {
-            var currentState = axWindowsMediaPlayer1.Ctlcontrols.currentPositionString;
+            int currentState = (int)targetVideo.Ctlcontrols.currentPosition;
 
-            if (dataGridView1.Rows.Count <= 0)
+            if (videoIntervalGrid.Rows.Count <= 0)
             {
-                dataGridView1.Rows.Add(currentState, "");
+                videoIntervalGrid.Rows.Add(currentState, "");
             }
             else
             {
-                var last = dataGridView1.Rows[dataGridView1.RowCount - 1];
+                var last = videoIntervalGrid.Rows[videoIntervalGrid.RowCount - 1];
                 if (!string.IsNullOrEmpty(last.Cells[1].Value.ToString()))
                 {
-                    dataGridView1.Rows.Add(currentState, "");
+                    videoIntervalGrid.Rows.Add(currentState, "");
                 }
                 else
                 {
                     last.Cells[1].Value = currentState;
                 }
+            }
+        }
+
+        private void NewProjectForm_Load(object sender, EventArgs e)
+        {
+            this.videoIntervalGrid.Rows.Add("0", string.Empty, string.Empty);
+            ComboBoxLoader.LoadEmotionComboBox(ref emotionColumn);
+        }
+
+        private async void extractEmotionButton(object sender, EventArgs e)
+        {
+            var lastRow = videoIntervalGrid.Rows[videoIntervalGrid.Rows.Count - 1];
+
+            var inputFile = new MediaFile { Filename = targetVideoPathTextBox.Text };
+
+            using (var engine = new Engine())
+            {
+                engine.GetMetadata(inputFile);
+            }
+
+            var totalSec = inputFile.Metadata.Duration.TotalSeconds;
+           
+            // todo fix me pls
+            if (string.IsNullOrEmpty(lastRow.Cells[1].Value.ToString()))
+            {
+                lastRow.Cells[1].Value = inputFile.Metadata.Duration.ToString("mm:ss");
+            }
+
+            // validate grid input
+            foreach (DataGridViewRow row in videoIntervalGrid.Rows)
+            {
+                if (
+                    string.IsNullOrEmpty(row.Cells[0].Value.ToString()) ||
+                    string.IsNullOrEmpty(row.Cells[1].Value.ToString()) ||
+                    string.IsNullOrEmpty(row.Cells[2].Value.ToString())
+                )
+                {
+                    MessageSender.ErrorMessage("You must fill expected grid");
+                    return;
+                }
+            }
+
+            // save expected result
+            foreach (DataGridViewRow row in videoIntervalGrid.Rows)
+            {
+                var from = int.Parse(row.Cells[0].Value.ToString());
+                var to = int.Parse(row.Cells[1].Value.ToString());
+                var emotion = row.Cells[2].Value.ToString();
+
+                var expectedResultWorker = new ExpectedResultWorker();
+                expectedResultWorker.Create(this.projectId, from, to, emotion);
+            }
+
+            // store actual result
+            for (var i = 0; i < totalSec; i++)
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "frames");
+                var fullPath = $"{path}/image--{i}.jpeg";
+
+                var emotionExtracter = new ExtractEmotionFromPicture();
+
+                var emotion = await emotionExtracter.Process(fullPath);
+
+                var actualResultWorker = new ActualResultWorker();
+                actualResultWorker.Create(emotion, this.projectId, i);
             }
         }
     }
