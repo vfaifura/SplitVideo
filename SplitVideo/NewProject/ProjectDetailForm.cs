@@ -229,7 +229,8 @@ namespace SplitVideo.NewProject
                 var emotionExtracter = new ExtractEmotionFromPicture();
 
                 var emotion = await emotionExtracter.Process(fullPath);
-                Thread.Sleep(500);
+                // встановлюємо час очікування в секунду
+                Thread.Sleep(1000);
 
                 // error handling
                 if (emotion == null)
