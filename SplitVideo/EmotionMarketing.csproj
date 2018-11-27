@@ -177,17 +177,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NewProject\ExpectedActualResult.cs">
+    <Compile Include="NewProject\ResultForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewProject\ExpectedActualResult.Designer.cs">
-      <DependentUpon>ExpectedActualResult.cs</DependentUpon>
+    <Compile Include="NewProject\ResultForm.Designer.cs">
+      <DependentUpon>ResultForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewProject\NewProjectForm.cs">
+    <Compile Include="NewProject\ProjectDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewProject\NewProjectForm.Designer.cs">
-      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    <Compile Include="NewProject\ProjectDetailForm.Designer.cs">
+      <DependentUpon>ProjectDetailForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainFrame.cs">
       <SubType>Form</SubType>
@@ -195,17 +195,17 @@
     <Compile Include="MainFrame.Designer.cs">
       <DependentUpon>MainFrame.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewProject\NewProjectInfo.cs">
+    <Compile Include="NewProject\CreateProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewProject\NewProjectInfo.Designer.cs">
-      <DependentUpon>NewProjectInfo.cs</DependentUpon>
+    <Compile Include="NewProject\CreateProjectForm.Designer.cs">
+      <DependentUpon>CreateProjectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewProject\ProjectsForm.cs">
+    <Compile Include="NewProject\ProjectListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewProject\ProjectsForm.Designer.cs">
-      <DependentUpon>ProjectsForm.cs</DependentUpon>
+    <Compile Include="NewProject\ProjectListForm.Designer.cs">
+      <DependentUpon>ProjectListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,24 +215,20 @@
     <Compile Include="Shared\LoadForm.Designer.cs">
       <DependentUpon>LoadForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Test\FormMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Test\FormMain.Designer.cs" />
-    <EmbeddedResource Include="NewProject\ExpectedActualResult.resx">
-      <DependentUpon>ExpectedActualResult.cs</DependentUpon>
+    <EmbeddedResource Include="NewProject\ResultForm.resx">
+      <DependentUpon>ResultForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewProject\NewProjectForm.resx">
-      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    <EmbeddedResource Include="NewProject\ProjectDetailForm.resx">
+      <DependentUpon>ProjectDetailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFrame.resx">
       <DependentUpon>MainFrame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewProject\NewProjectInfo.resx">
-      <DependentUpon>NewProjectInfo.cs</DependentUpon>
+    <EmbeddedResource Include="NewProject\CreateProjectForm.resx">
+      <DependentUpon>CreateProjectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewProject\ProjectsForm.resx">
-      <DependentUpon>ProjectsForm.cs</DependentUpon>
+    <EmbeddedResource Include="NewProject\ProjectListForm.resx">
+      <DependentUpon>ProjectListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -247,7 +243,6 @@
     <EmbeddedResource Include="Shared\LoadForm.resx">
       <DependentUpon>LoadForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Test\FormMain.resx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -282,9 +277,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EmotionMarketing.Domain\EmotionMarketing.Domain.csproj">
+    <ProjectReference Include="..\EmotionMarketing.Domain\EmotionMarketing.Data.csproj">
       <Project>{cc1dfb3d-fa8a-4836-bea0-c7c50d814d3d}</Project>
-      <Name>EmotionMarketing.Domain</Name>
+      <Name>EmotionMarketing.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmotionMarketing.Logic\EmotionMarketing.Logic.csproj">
       <Project>{7A004398-3BE3-41A1-8AC3-DF7B8DA986CD}</Project>

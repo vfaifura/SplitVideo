@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using SplitVideo.NewProject;
-using SplitVideo.Test;
 
 namespace SplitVideo
 {
@@ -19,10 +18,29 @@ namespace SplitVideo
 
         private void newProjectButton_Click(object sender, EventArgs e)
         {
-            using (var form = new NewProjectInfo())
+            using (var form = new CreateProjectForm())
             {
                 this.Hide();
-                form.ShowDialog();
+
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+
+                    var id = form.projectId;
+                    if (!id.HasValue) return;
+
+                    using (var projectForm = new ProjectDetailForm(id.Value))
+                    {
+                        var res = projectForm.ShowDialog();
+                        if (res == DialogResult.OK)
+                        {
+                            using (var resultForm = new ResultForm(id.Value))
+                            {
+                                resultForm.ShowDialog();
+                            }
+                        }
+                    }
+                }
             }
 
             this.Show();
@@ -30,29 +48,13 @@ namespace SplitVideo
 
         private void viewProjectButton_Click(object sender, EventArgs e)
         {
-            using (var form = new ProjectsForm())
+            using (var form = new ProjectListForm())
             {
                 this.Hide();
                 form.ShowDialog();
             }
 
             this.Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            using (var form = new NewProjectForm(1))
-            {
-                form.ShowDialog();
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            using (var form = new ExpectedActualResult(1))
-            {
-                form.ShowDialog();
-            }
         }
     }
 }

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionMarketing", "SplitVideo\EmotionMarketing.csproj", "{90A0EB1B-8A90-4DF7-8BD7-AA8F8D90543E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionMarketing.Domain", "EmotionMarketing.Domain\EmotionMarketing.Domain.csproj", "{CC1DFB3D-FA8A-4836-BEA0-C7C50D814D3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionMarketing.Data", "EmotionMarketing.Domain\EmotionMarketing.Data.csproj", "{CC1DFB3D-FA8A-4836-BEA0-C7C50D814D3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmotionMarketing.Logic", "EmotionMarketing.Logic\EmotionMarketing.Logic.csproj", "{7A004398-3BE3-41A1-8AC3-DF7B8DA986CD}"
 EndProject

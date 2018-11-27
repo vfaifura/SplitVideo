@@ -7,7 +7,7 @@
     public class AzureConstants
     {
 
-        public const string FaceSubscriptionKey = "e852ecadf15b472491da893efeb8481e";
+        public const string FaceSubscriptionKey = "35f6cd1355fc4e63b9098e26405aae3b";
 
         /// <summary>
         /// Документация Azure:
@@ -24,7 +24,7 @@
         public const string FaceEndpoint = "https://westeurope.api.cognitive.microsoft.com/";
 
         // public const string VisionSubscriptionKey = "746b71c1a7e847b093065b442f26ffe6";
-        public const string VisionSubscriptionKey = "43610666-9104-4ef5-a6ad-eeab6d9d7152";
+        public const string VisionSubscriptionKey = "312910038fee4cc297c0d18f0d5908c3";
 
         public const string VisionUriBase = "https://westcentralus.api.cognitive.microsoft.com";
     }

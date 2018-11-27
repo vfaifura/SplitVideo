@@ -1,6 +1,6 @@
 ﻿namespace SplitVideo.NewProject
 {
-    partial class NewProjectForm
+    partial class ProjectDetailForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewProjectForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectDetailForm));
             this.setPathToTargetVideoButton = new System.Windows.Forms.Button();
-            this.clearVideo = new System.Windows.Forms.Button();
             this.targetVideoPathTextBox = new System.Windows.Forms.TextBox();
             this.intoFramesButton = new System.Windows.Forms.Button();
             this.targetVideo = new AxWMPLib.AxWindowsMediaPlayer();
@@ -46,7 +45,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.reactionVideoPathTextBox = new System.Windows.Forms.TextBox();
             this.setPathToReactionVideoButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.clearVideo = new System.Windows.Forms.Button();
+            this.logTextBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.targetVideo)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.videoIntervalGrid)).BeginInit();
@@ -55,29 +55,22 @@
             // 
             // setPathToTargetVideoButton
             // 
+            this.setPathToTargetVideoButton.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.setPathToTargetVideoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.setPathToTargetVideoButton.ForeColor = System.Drawing.Color.White;
             this.setPathToTargetVideoButton.Location = new System.Drawing.Point(375, 34);
             this.setPathToTargetVideoButton.Margin = new System.Windows.Forms.Padding(5);
             this.setPathToTargetVideoButton.Name = "setPathToTargetVideoButton";
             this.setPathToTargetVideoButton.Size = new System.Drawing.Size(40, 30);
             this.setPathToTargetVideoButton.TabIndex = 1;
             this.setPathToTargetVideoButton.Text = "...";
-            this.setPathToTargetVideoButton.UseVisualStyleBackColor = true;
+            this.setPathToTargetVideoButton.UseVisualStyleBackColor = false;
             this.setPathToTargetVideoButton.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // clearVideo
-            // 
-            this.clearVideo.Location = new System.Drawing.Point(20, 370);
-            this.clearVideo.Margin = new System.Windows.Forms.Padding(5);
-            this.clearVideo.Name = "clearVideo";
-            this.clearVideo.Size = new System.Drawing.Size(125, 37);
-            this.clearVideo.TabIndex = 3;
-            this.clearVideo.Text = "Clear Video";
-            this.clearVideo.UseVisualStyleBackColor = true;
-            this.clearVideo.Click += new System.EventHandler(this.button3_Click);
             // 
             // targetVideoPathTextBox
             // 
+            this.targetVideoPathTextBox.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.targetVideoPathTextBox.ForeColor = System.Drawing.Color.White;
             this.targetVideoPathTextBox.Location = new System.Drawing.Point(20, 34);
             this.targetVideoPathTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.targetVideoPathTextBox.Name = "targetVideoPathTextBox";
@@ -86,24 +79,28 @@
             // 
             // intoFramesButton
             // 
-            this.intoFramesButton.Location = new System.Drawing.Point(456, 338);
+            this.intoFramesButton.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.intoFramesButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.intoFramesButton.ForeColor = System.Drawing.Color.White;
+            this.intoFramesButton.Location = new System.Drawing.Point(751, 325);
             this.intoFramesButton.Margin = new System.Windows.Forms.Padding(5);
             this.intoFramesButton.Name = "intoFramesButton";
-            this.intoFramesButton.Size = new System.Drawing.Size(343, 37);
+            this.intoFramesButton.Size = new System.Drawing.Size(138, 114);
             this.intoFramesButton.TabIndex = 5;
-            this.intoFramesButton.Text = "3. Cut video on pic";
-            this.intoFramesButton.UseVisualStyleBackColor = true;
-            this.intoFramesButton.Click += new System.EventHandler(this.processButton_Click);
+            this.intoFramesButton.Text = "Process";
+            this.intoFramesButton.UseVisualStyleBackColor = false;
+            this.intoFramesButton.Click += new System.EventHandler(this.processButton_ClickAsync);
             // 
             // targetVideo
             // 
             this.targetVideo.Enabled = true;
-            this.targetVideo.Location = new System.Drawing.Point(469, 19);
+            this.targetVideo.Location = new System.Drawing.Point(434, 19);
             this.targetVideo.Margin = new System.Windows.Forms.Padding(5);
             this.targetVideo.Name = "targetVideo";
             this.targetVideo.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("targetVideo.OcxState")));
-            this.targetVideo.Size = new System.Drawing.Size(433, 262);
+            this.targetVideo.Size = new System.Drawing.Size(468, 296);
             this.targetVideo.TabIndex = 0;
+            this.targetVideo.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.targetVideo_PlayStateChange_1);
             // 
             // label1
             // 
@@ -120,7 +117,7 @@
             this.groupBox1.Controls.Add(this.videoIntervalGrid);
             this.groupBox1.Location = new System.Drawing.Point(20, 127);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(406, 235);
+            this.groupBox1.Size = new System.Drawing.Size(406, 320);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Expected result";
@@ -147,7 +144,7 @@
             this.videoIntervalGrid.Location = new System.Drawing.Point(10, 59);
             this.videoIntervalGrid.Name = "videoIntervalGrid";
             this.videoIntervalGrid.RowHeadersVisible = false;
-            this.videoIntervalGrid.Size = new System.Drawing.Size(385, 162);
+            this.videoIntervalGrid.Size = new System.Drawing.Size(385, 253);
             this.videoIntervalGrid.TabIndex = 13;
             // 
             // fromColumn
@@ -173,13 +170,16 @@
             // 
             // getPlayerStateButton
             // 
-            this.getPlayerStateButton.Location = new System.Drawing.Point(456, 291);
+            this.getPlayerStateButton.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.getPlayerStateButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.getPlayerStateButton.ForeColor = System.Drawing.Color.White;
+            this.getPlayerStateButton.Location = new System.Drawing.Point(600, 325);
             this.getPlayerStateButton.Margin = new System.Windows.Forms.Padding(5);
             this.getPlayerStateButton.Name = "getPlayerStateButton";
-            this.getPlayerStateButton.Size = new System.Drawing.Size(343, 37);
+            this.getPlayerStateButton.Size = new System.Drawing.Size(141, 114);
             this.getPlayerStateButton.TabIndex = 11;
-            this.getPlayerStateButton.Text = "2. Get State";
-            this.getPlayerStateButton.UseVisualStyleBackColor = true;
+            this.getPlayerStateButton.Text = "Get State";
+            this.getPlayerStateButton.UseVisualStyleBackColor = false;
             this.getPlayerStateButton.Click += new System.EventHandler(this.getPlayerStateButton_Click);
             // 
             // reactionVideo
@@ -204,6 +204,8 @@
             // 
             // reactionVideoPathTextBox
             // 
+            this.reactionVideoPathTextBox.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.reactionVideoPathTextBox.ForeColor = System.Drawing.Color.White;
             this.reactionVideoPathTextBox.Location = new System.Drawing.Point(20, 89);
             this.reactionVideoPathTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.reactionVideoPathTextBox.Name = "reactionVideoPathTextBox";
@@ -212,47 +214,62 @@
             // 
             // setPathToReactionVideoButton
             // 
+            this.setPathToReactionVideoButton.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.setPathToReactionVideoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.setPathToReactionVideoButton.ForeColor = System.Drawing.Color.White;
             this.setPathToReactionVideoButton.Location = new System.Drawing.Point(375, 89);
             this.setPathToReactionVideoButton.Margin = new System.Windows.Forms.Padding(5);
             this.setPathToReactionVideoButton.Name = "setPathToReactionVideoButton";
             this.setPathToReactionVideoButton.Size = new System.Drawing.Size(40, 30);
             this.setPathToReactionVideoButton.TabIndex = 15;
             this.setPathToReactionVideoButton.Text = "...";
-            this.setPathToReactionVideoButton.UseVisualStyleBackColor = true;
+            this.setPathToReactionVideoButton.UseVisualStyleBackColor = false;
+            this.setPathToReactionVideoButton.Click += new System.EventHandler(this.setPathToReactionVideoButton_Click);
             // 
-            // button1
+            // clearVideo
             // 
-            this.button1.Location = new System.Drawing.Point(456, 385);
-            this.button1.Margin = new System.Windows.Forms.Padding(5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(343, 37);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "4. Send on azure and extract emotion";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.extractEmotionButton);
+            this.clearVideo.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.clearVideo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.clearVideo.ForeColor = System.Drawing.Color.White;
+            this.clearVideo.Location = new System.Drawing.Point(449, 325);
+            this.clearVideo.Margin = new System.Windows.Forms.Padding(5);
+            this.clearVideo.Name = "clearVideo";
+            this.clearVideo.Size = new System.Drawing.Size(141, 114);
+            this.clearVideo.TabIndex = 3;
+            this.clearVideo.Text = "Clear Video";
+            this.clearVideo.UseVisualStyleBackColor = false;
+            this.clearVideo.Click += new System.EventHandler(this.button3_Click);
             // 
-            // NewProjectForm
+            // logTextBox
+            // 
+            this.logTextBox.Location = new System.Drawing.Point(910, 20);
+            this.logTextBox.Name = "logTextBox";
+            this.logTextBox.Size = new System.Drawing.Size(232, 419);
+            this.logTextBox.TabIndex = 18;
+            this.logTextBox.Text = "";
+            // 
+            // ProjectDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 446);
-            this.Controls.Add(this.button1);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1154, 452);
+            this.Controls.Add(this.logTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.reactionVideoPathTextBox);
+            this.Controls.Add(this.clearVideo);
             this.Controls.Add(this.setPathToReactionVideoButton);
             this.Controls.Add(this.getPlayerStateButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.intoFramesButton);
             this.Controls.Add(this.targetVideoPathTextBox);
-            this.Controls.Add(this.clearVideo);
             this.Controls.Add(this.setPathToTargetVideoButton);
             this.Controls.Add(this.targetVideo);
             this.Controls.Add(this.reactionVideo);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "NewProjectForm";
+            this.Name = "ProjectDetailForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Video Setting Form";
             this.Load += new System.EventHandler(this.NewProjectForm_Load);
@@ -270,7 +287,6 @@
 
         private AxWMPLib.AxWindowsMediaPlayer targetVideo;
         private System.Windows.Forms.Button setPathToTargetVideoButton;
-        private System.Windows.Forms.Button clearVideo;
         private System.Windows.Forms.TextBox targetVideoPathTextBox;
         private System.Windows.Forms.Button intoFramesButton;
         private System.Windows.Forms.Label label1;
@@ -285,7 +301,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox reactionVideoPathTextBox;
         private System.Windows.Forms.Button setPathToReactionVideoButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button clearVideo;
+        private System.Windows.Forms.RichTextBox logTextBox;
     }
 }
 

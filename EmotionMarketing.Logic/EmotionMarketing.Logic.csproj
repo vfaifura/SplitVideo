@@ -181,9 +181,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EmotionMarketing.Domain\EmotionMarketing.Domain.csproj">
+    <ProjectReference Include="..\EmotionMarketing.Domain\EmotionMarketing.Data.csproj">
       <Project>{CC1DFB3D-FA8A-4836-BEA0-C7C50D814D3D}</Project>
-      <Name>EmotionMarketing.Domain</Name>
+      <Name>EmotionMarketing.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

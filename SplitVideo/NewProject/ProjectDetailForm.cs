@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using EmotionMarketing.Logic.DbWorker;
 using EmotionMarketing.Logic.EmotionAPI;
@@ -9,19 +10,18 @@ using EmotionMarketing.Logic.Utils;
 using MediaToolkit;
 using MediaToolkit.Model;
 using MediaToolkit.Options;
-using SplitVideo.Shared;
 
 namespace SplitVideo.NewProject
 {
-    public partial class NewProjectForm : Form
+    public partial class ProjectDetailForm : Form
     {
         private int projectId;
+        private string fileName = "image-";
 
-        public NewProjectForm(int projectId)
+        public ProjectDetailForm(int projectId)
         {
             InitializeComponent();
 
-            emotionColumn.Items.AddRange("Happy", "Mad", "Anger");
             this.projectId = projectId;
         }
 
@@ -29,14 +29,33 @@ namespace SplitVideo.NewProject
         {
             OpenFileDialog openFileDialod1 = new OpenFileDialog();
 
-            if (openFileDialod1.ShowDialog() == DialogResult.OK)
-            {
-                targetVideoPathTextBox.Text = openFileDialod1.FileName;
-            }
+            if (openFileDialod1.ShowDialog() != DialogResult.OK)
+                return;
+
+            targetVideoPathTextBox.Text = openFileDialod1.FileName;
 
             targetVideo.URL = targetVideoPathTextBox.Text;
             targetVideo.Ctlcontrols.play();
             var inputFile = new MediaFile { Filename = targetVideoPathTextBox.Text };
+
+            using (var engine = new Engine())
+            {
+                engine.GetMetadata(inputFile);
+            }
+        }
+
+        private void setPathToReactionVideoButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialod1 = new OpenFileDialog();
+
+            if (openFileDialod1.ShowDialog() != DialogResult.OK)
+                return;
+
+            reactionVideoPathTextBox.Text = openFileDialod1.FileName;
+
+            reactionVideo.URL = reactionVideoPathTextBox.Text;
+            reactionVideo.Ctlcontrols.stop();
+            var inputFile = new MediaFile { Filename = reactionVideoPathTextBox.Text };
 
             using (var engine = new Engine())
             {
@@ -52,22 +71,57 @@ namespace SplitVideo.NewProject
         }
 
 
-        private void processButton_Click(object sender, EventArgs e)
+        private async void processButton_ClickAsync(object sender, EventArgs e)
         {
-            var form = new LoadForm();
-            var th = new Thread(() =>
-            {
-                CutVideo();
-                form.Dispose();
-            });
+            if (!this.Validatation())
+                return;
 
-            th.Start();
-            form.Show();
+            MessageSender.SuccessMessage("We starting to cut video");
+            CutVideo();
+            MessageSender.SuccessMessage("We're uploading to azure");
+            await Extracting();
+
+            DialogResult = DialogResult.OK;
+        }
+
+        private bool Validatation()
+        {
+            // validate empty path
+            if (string.IsNullOrEmpty(targetVideoPathTextBox.Text))
+            {
+                MessageSender.ErrorMessage("Provide target video path");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(reactionVideoPathTextBox.Text))
+            {
+                MessageSender.ErrorMessage("Provide reaction video path");
+                return false;
+            }
+
+            // validate expected result input
+            var lastRow = videoIntervalGrid.Rows[videoIntervalGrid.Rows.Count - 1];
+
+            var inputFile = new MediaFile { Filename = targetVideoPathTextBox.Text };
+            using (var engine = new Engine())
+            {
+                engine.GetMetadata(inputFile);
+            }
+
+            var totalSec = inputFile.Metadata.Duration.TotalSeconds;
+
+            if (string.IsNullOrEmpty(lastRow.Cells[1].Value.ToString()))
+            {
+                lastRow.Cells[1].Value = totalSec;
+            }
+
+
+            return true;
         }
 
         private void CutVideo()
         {
-            var inputFile = new MediaFile { Filename = targetVideoPathTextBox.Text };
+            var inputFile = new MediaFile { Filename = reactionVideoPathTextBox.Text };
 
             using (var engine = new Engine())
             {
@@ -76,22 +130,29 @@ namespace SplitVideo.NewProject
 
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
+                else
+                {
+                    var di = new DirectoryInfo(path);
+                    foreach (var fileToRemove in di.GetFiles())
+                    {
+                        fileToRemove.Delete();
+                    }
+                }
 
                 var i = 0;
                 var durationDouble = Convert.ToDouble(inputFile
                                                       .Metadata.Duration.TotalSeconds
-                                                      .ToString(CultureInfo.CurrentCulture));
+                                                      .ToString(CultureInfo.CurrentCulture)) + 0.005;
 
                 var durationInt = (int)durationDouble;
 
-                while (i < durationInt)
+                while (i <= durationInt)
                 {
                     var options = new ConversionOptions { Seek = TimeSpan.FromSeconds(i) };
-                    var outputFile = new MediaFile { Filename = $"{path}\\image--{i}.jpeg" };
+                    var outputFile = new MediaFile { Filename = $"{path}\\{fileName}{i}.jpeg" };
                     engine.GetThumbnail(inputFile, outputFile, options);
                     i++;
                 }
-
             }
         }
 
@@ -123,10 +184,8 @@ namespace SplitVideo.NewProject
             ComboBoxLoader.LoadEmotionComboBox(ref emotionColumn);
         }
 
-        private async void extractEmotionButton(object sender, EventArgs e)
+        private async Task Extracting()
         {
-            var lastRow = videoIntervalGrid.Rows[videoIntervalGrid.Rows.Count - 1];
-
             var inputFile = new MediaFile { Filename = targetVideoPathTextBox.Text };
 
             using (var engine = new Engine())
@@ -135,12 +194,6 @@ namespace SplitVideo.NewProject
             }
 
             var totalSec = inputFile.Metadata.Duration.TotalSeconds;
-           
-            // todo fix me pls
-            if (string.IsNullOrEmpty(lastRow.Cells[1].Value.ToString()))
-            {
-                lastRow.Cells[1].Value = inputFile.Metadata.Duration.ToString("mm:ss");
-            }
 
             // validate grid input
             foreach (DataGridViewRow row in videoIntervalGrid.Rows)
@@ -171,15 +224,29 @@ namespace SplitVideo.NewProject
             for (var i = 0; i < totalSec; i++)
             {
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "frames");
-                var fullPath = $"{path}/image--{i}.jpeg";
+                var fullPath = $"{path}/{fileName}{i}.jpeg";
 
                 var emotionExtracter = new ExtractEmotionFromPicture();
 
                 var emotion = await emotionExtracter.Process(fullPath);
+                Thread.Sleep(500);
+
+                // error handling
+                if (emotion == null)
+                    continue;
 
                 var actualResultWorker = new ActualResultWorker();
                 actualResultWorker.Create(emotion, this.projectId, i);
+                logTextBox.AppendText($"{DateTime.Now} image processing, obtained emotion {emotion}{Environment.NewLine}");
             }
+        }
+
+        private void targetVideo_PlayStateChange_1(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (e.newState != 1) return;
+            targetVideo.Ctlcontrols.currentPosition = targetVideo.currentMedia.duration;//- .001;
+            targetVideo.Ctlcontrols.play();
+            targetVideo.Ctlcontrols.pause();
         }
     }
 }

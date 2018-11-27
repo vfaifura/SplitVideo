@@ -1,6 +1,6 @@
 ﻿namespace SplitVideo.NewProject
 {
-    partial class ProjectsForm
+    partial class ProjectListForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.exitButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,7 +52,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(890, 57);
+            this.panel1.Size = new System.Drawing.Size(977, 57);
             this.panel1.TabIndex = 2;
             // 
             // exitButton
@@ -61,7 +62,7 @@
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitButton.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.exitButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.exitButton.Location = new System.Drawing.Point(821, 3);
+            this.exitButton.Location = new System.Drawing.Point(908, 3);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(57, 51);
             this.exitButton.TabIndex = 2;
@@ -84,6 +85,15 @@
             this.projectsGrid.AllowUserToAddRows = false;
             this.projectsGrid.AllowUserToDeleteRows = false;
             this.projectsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.projectsGrid.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.projectsGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.projectsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.projectsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idCol,
@@ -95,11 +105,14 @@
             this.attentionCol,
             this.detailCol});
             this.projectsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.projectsGrid.EnableHeadersVisualStyles = false;
             this.projectsGrid.Location = new System.Drawing.Point(0, 57);
             this.projectsGrid.Name = "projectsGrid";
             this.projectsGrid.ReadOnly = true;
-            this.projectsGrid.Size = new System.Drawing.Size(890, 388);
+            this.projectsGrid.RowHeadersVisible = false;
+            this.projectsGrid.Size = new System.Drawing.Size(977, 392);
             this.projectsGrid.TabIndex = 3;
+            this.projectsGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectsGrid_CellClick);
             // 
             // idCol
             // 
@@ -114,7 +127,7 @@
             this.titleCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.titleCol.FillWeight = 427.5862F;
             this.titleCol.HeaderText = "Title";
-            this.titleCol.MinimumWidth = 120;
+            this.titleCol.MinimumWidth = 180;
             this.titleCol.Name = "titleCol";
             this.titleCol.ReadOnly = true;
             // 
@@ -123,7 +136,7 @@
             this.descriptionCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.descriptionCol.FillWeight = 34.48276F;
             this.descriptionCol.HeaderText = "Description";
-            this.descriptionCol.MinimumWidth = 120;
+            this.descriptionCol.MinimumWidth = 150;
             this.descriptionCol.Name = "descriptionCol";
             this.descriptionCol.ReadOnly = true;
             // 
@@ -132,6 +145,7 @@
             this.producerCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.producerCol.FillWeight = 34.48276F;
             this.producerCol.HeaderText = "Producer";
+            this.producerCol.MinimumWidth = 50;
             this.producerCol.Name = "producerCol";
             this.producerCol.ReadOnly = true;
             this.producerCol.Width = 119;
@@ -140,6 +154,7 @@
             // 
             this.genderCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.genderCol.HeaderText = "Gender";
+            this.genderCol.MinimumWidth = 50;
             this.genderCol.Name = "genderCol";
             this.genderCol.ReadOnly = true;
             this.genderCol.Width = 107;
@@ -149,6 +164,7 @@
             this.genreCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.genreCol.FillWeight = 34.48276F;
             this.genreCol.HeaderText = "Genre";
+            this.genreCol.MinimumWidth = 50;
             this.genreCol.Name = "genreCol";
             this.genreCol.ReadOnly = true;
             this.genreCol.Width = 94;
@@ -158,6 +174,7 @@
             this.attentionCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.attentionCol.FillWeight = 34.48276F;
             this.attentionCol.HeaderText = "Attention Rate";
+            this.attentionCol.MinimumWidth = 80;
             this.attentionCol.Name = "attentionCol";
             this.attentionCol.ReadOnly = true;
             this.attentionCol.Width = 156;
@@ -180,7 +197,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 445);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(977, 449);
             this.Controls.Add(this.projectsGrid);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 14.25F);

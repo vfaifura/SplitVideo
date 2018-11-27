@@ -1,14 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
-using EmotionMarketing.Domain;
 
 namespace EmotionMarketing.Domain.Migrations
 {
     [DbContext(typeof(emotionDb))]
-    partial class emotionDbModelSnapshot : ModelSnapshot
+    internal class emotionDbModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

@@ -6,11 +6,13 @@ using EmotionMarketing.Logic.Utils;
 
 namespace SplitVideo.NewProject
 {
-    public partial class NewProjectInfo : Form
+    public partial class CreateProjectForm : Form
     {
+        public int? projectId;
+
         private readonly ProjectWorker worker;
 
-        public NewProjectInfo()
+        public CreateProjectForm()
         {
             InitializeComponent();
 
@@ -22,16 +24,21 @@ namespace SplitVideo.NewProject
             var gender = genreComboBox.Text == @"Male" ? GenderType.Male : GenderType.Female;
             var rate = (int)attentionRateNumeric.Value;
 
-            worker.CreateProject(titleTextBox.Text, descriptionTextBox.Text,
+            this.projectId = worker.CreateProject(titleTextBox.Text, descriptionTextBox.Text,
                 genreComboBox.Text, producerNameTextBox.Text, gender, rate);
 
             MessageSender.SuccessMessage("Project successfuly created");
-            this.Dispose();
+            DialogResult = DialogResult.OK;
         }
 
         private void NewProjectInfo_Load(object sender, EventArgs e)
         {
             ComboBoxLoader.LoadGenreComboBox(ref genreComboBox);
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

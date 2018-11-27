@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EmotionMarketing.Logic.Cognitive;
 using EmotionMarketing.Logic.Detection;
+using EmotionMarketing.Logic.Utils;
 using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 
 namespace EmotionMarketing.Logic.EmotionAPI
@@ -14,7 +15,7 @@ namespace EmotionMarketing.Logic.EmotionAPI
     {
         public async Task<string> Process(string imgPath)
         {
-            IList<DetectedFace> facesResult = null;
+            IList<DetectedFace> facesResult;
             // ImageAnalysis visionResult = null;
 
             try
@@ -31,8 +32,7 @@ namespace EmotionMarketing.Logic.EmotionAPI
 
                 if (!haveFaces)
                 {
-                    // todo: записати в базі як no attention
-                    return null;
+                    return "No attention";
                 }
 
                 // анализ лица
@@ -45,8 +45,8 @@ namespace EmotionMarketing.Logic.EmotionAPI
             }
             catch (Exception ex)
             {
-                var k = ex.Message;
-                // todo handle exception
+                MessageSender.ErrorMessage(ex.Message);
+                return null;
             }
 
             /*
@@ -72,10 +72,10 @@ namespace EmotionMarketing.Logic.EmotionAPI
             };
 
             // todo handle gender
-            var gender = facesResult?.First().FaceAttributes.Gender.ToString();
+            // var gender = facesResult?.First().FaceAttributes.Gender.ToString();
 
             // todo revise whether we need it
-            var smile = facesResult?.First().FaceAttributes.Smile.ToString();
+            // var smile = facesResult?.First().FaceAttributes.Smile.ToString();
 
             return dictionary.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
         }
